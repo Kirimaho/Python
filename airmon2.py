@@ -29,7 +29,12 @@ def check_execute():
 		print("There has been an error setting up monitor mode, check config")
 
 def program_clear():
-	sub.check_output("sudo airmon-ng stop wlp4s0mon", shell=True)
+	try:
+		sub.check_output("sudo airmon-ng stop wlp4s0mon", shell=True)
+	except:
+		print("You are not in monitor mode")
+		close()
+
 	clear()
 	print("Managed mode have been set succesfuly")
 
@@ -60,3 +65,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
