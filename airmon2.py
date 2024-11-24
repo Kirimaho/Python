@@ -4,8 +4,6 @@ import sys
 import argparse
 from colorama import init, Fore
 
-#Definiendo modulos
-
 def outp():
 	return sub.check_output(["iwconfig"], text=True)
 
@@ -44,8 +42,6 @@ def program_clear():
 
 def close():
 	sys.exit()
-
-#Cuerpo de el programa
 
 def main():
 	user = get_user()
