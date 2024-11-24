@@ -1,6 +1,9 @@
 import subprocess as sub
 import time
 import sys 
+from colorama import init, Fore
+
+#Definiendo modulos
 
 def outp():
 	return sub.check_output(["iwconfig"], text=True)
@@ -21,9 +24,9 @@ def check_execute():
 
 	if "Monitor" in out:
 		clear()
-		print("Monitor mode has been set succesfuly")
+		print(Fore.CYAN + "Monitor mode has been set succesfuly" + Fore.RESET)
 	if "wlan0" not in out:
-		print("Wifi adapter not found")
+		print(Fore.RED + "Wifi adapter not found" + Fore.RESET)
 	if "Monitor" not in out:
 		clear()
 		print("There has been an error setting up monitor mode, check config")
@@ -32,25 +35,24 @@ def program_clear():
 	try:
 		sub.check_output("sudo airmon-ng stop wlp4s0mon", shell=True)
 	except:
-		print("You are not in monitor mode")
+		print(Fore.RED + "You are not in monitor mode" + Fore.RESET)
 		close()
-
 	clear()
-	print("Managed mode have been set succesfuly")
+	print(Fore.CYAN + "Managed mode have been set succesfuly" + Fore.RESET)
 
 def close():
 	sys.exit()
 
+#Cuerpo de el programa
 
 def main():
 	user = get_user()
-	dec = input(f"Hello {user} (E)xecute  (C)lear   E(X)it: ").lower()
+	dec = input(Fore.GREEN + f"Hello {user} | (E)xecute  (C)lear   E(X)it: " + Fore.RESET).lower()
 
 	if dec in "e": 
 		execute()
 		check_execute()
 		close()
-
 
 	elif dec in "c":
 		clear()
@@ -61,7 +63,11 @@ def main():
 		close()
 
 	else:
-		print("Invalid option. Please try again")
+		print(Fore.RED + "Invalid option. Please try again" + Fore.RESET)
+
+if __name__ == "__main__":
+    main()
+
 
 if __name__ == "__main__":
     main()
