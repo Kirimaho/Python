@@ -1,6 +1,7 @@
 import subprocess as sub
 import time
 import sys 
+import argparse
 from colorama import init, Fore
 
 #Definiendo modulos
@@ -21,7 +22,7 @@ def execute():
 
 def check_execute():
 	out = outp()
-
+	
 	if "Monitor" in out:
 		clear()
 		print(Fore.CYAN + "Monitor mode has been set succesfuly" + Fore.RESET)
@@ -40,6 +41,7 @@ def program_clear():
 	clear()
 	print(Fore.CYAN + "Managed mode have been set succesfuly" + Fore.RESET)
 
+
 def close():
 	sys.exit()
 
@@ -47,19 +49,20 @@ def close():
 
 def main():
 	user = get_user()
-	dec = input(Fore.GREEN + f"Hello {user} | (E)xecute  (C)lear   E(X)it: " + Fore.RESET).lower()
+	print(Fore.MAGENTA + f"Hello {user}" + Fore.RESET)
+	parser = argparse.ArgumentParser(description="Argumento")
+	parser.add_argument('-e', action='store_true', help="Poner en modo monitor")
+	parser.add_argument('-c', action='store_true', help="Quitar de modo monitor")
+	arg = parser.parse_args()
 
-	if dec in "e": 
+	if arg.e: 
 		execute()
 		check_execute()
 		close()
 
-	elif dec in "c":
+	elif arg.c:
 		clear()
 		program_clear()
-		close()
-
-	elif dec in "x":
 		close()
 
 	else:
@@ -67,4 +70,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
