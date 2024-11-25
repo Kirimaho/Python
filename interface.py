@@ -11,7 +11,7 @@ def interfaces():
 
 	for icn in i:
 		ext(icn)
-		print(icn)
+		print(icn) #print is temporal, here is the information i want to get outside this function
 		
 if __name__ == "__main__":
 	interfaces()
